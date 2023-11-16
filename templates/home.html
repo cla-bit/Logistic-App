@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html>
+	<head>
+		<meta charset="utf-8"/>
+<!--		<meta http-equiv="refresh" content="60">-->
+		<meta name="theme-color" content="#FF7878">
+		<meta name="description" content="ChrisViola is a trusted logistic limited company">
+		<meta name="keywords" content="ChrisViola, Logistic, Limited, Nigeria">
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+		<title>ChrisViola Logistic Limited</title>
+
+		<!--------- Favicons ------>
+		<link rel="shortcut icon" href="{% static './img/chrisviola-favicon.png.jpg' %}" type="image/x-icon">
+		<link rel="apple-touch-icon" href="{% static './img/chrisviola-favicon1.png.jpg' %}">
+
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+		<link rel="stylesheet" href="{% static 'css/foundation.min.css' %}"/>
+		<link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+		<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+		<!----- Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Cabin+Condensed:600' rel='stylesheet' type='text/css'>
+
+	</head>
+	<body>
+		<div id="top" data-magellan-expedition="fixed">
+			<div class="row">
+				<div class="large-12 columns">
+					<nav class="top-bar">
+						<ul class="title-area">
+							<li class="name logo">
+								<a href="#"><img src="{% static 'img/chrisviola-img.png' %}" id="logo" alt=""></a>
+							</li>
+						</ul>
+
+						<section class="top-bar-section">
+							<ul class="right" id="menu">
+								<li data-magellan-arrival="features"><a href="#features">Features</a></li>
+								<li data-magellan-arrival="contact"><a href="#contact">Contact Us</a></li>
+							</ul>
+						</section>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<header id="header">
+			<div class="row">
+
+				<div class="large-6 columns">
+					<div id="teaser-slider-2">
+					</div>
+				</div>
+
+				<div class="large-6 columns">
+					<h1>Super, Fast, Logistic</h1>
+					<p class="subheading">We give our 100%. Delivering Excellence in Logistics Solutions</p>
+					<button class="download-btn btn btn-primary mb-4" type="button">Call us on: 089123456789</button>
+				</div>
+
+			</div>
+		</header>
+
+		<div id="features" class="section features m2" data-magellan-destination="features">
+			<div class="row hi-icon-wrap hi-icon-effect-3 hi-icon-effect-3b">
+				<h3 class="mt-3 text-center">What are our Features?</h3>
+				<hr class="mb-1">
+				<div class="large-4 columns feature">
+					<span class="icon icon-browser hi-icon"></span>
+					<h3>Delivering Excellence in Logistics Solutions</h3>
+					<p>Streamline your operations with our state-of-the-art supply chain solutions. We leverage cutting-edge
+						technology to optimize the movement of goods, ensuring timely deliveries and cost-effective processes.
+						From procurement to distribution, we've got your supply chain covered.</p>
+				</div>
+				<div class="large-4 columns feature">
+					<span class="icon icon-tools hi-icon"></span>
+					<h3>Real-Time Tracking and Visibility</h3>
+					<p>Stay in control of your shipments with our real-time tracking and visibility tools. Our robust tracking
+						system provides instant updates on the location and status of your goods throughout the entire journey.
+						Experience transparency like never before.</p>
+				</div>
+				<div class="large-4 columns feature">
+					<span class="icon icon-trophy hi-icon"></span>
+					<h3>Customized Logistics Solutions</h3>
+					<p>We understand that every business is unique. That's why we offer tailor-made logistics solutions to meet
+						your specific requirements. Whether it's warehousing, distribution, or transportation, our team works
+						closely with you to design a logistics strategy that aligns with your goals.</p>
+				</div>
+			</div>
+		</div>
+
+		<div id="contact" class="section contact gray" data-magellan-destination="contact">
+			<div class="row">
+				<div class="large-12 columns">
+					<h2>Do you want a quota?</h2>
+					<span class="subheading">If you're interested, I'd love to hear from you. Drop me a line anytime!</span>
+
+					<form method="post" action="{% url 'core:home' %}" id="contactform">
+						{% if messages %}
+							<div class="alert alert-dark alert-dismissible text-white {% for message in messages %}{% if message.tags %}{{ message.tags }}{% endif %}{% endfor %}" role="alert">
+								<h4 class="alert-heading">Well done! Message has been sent</h4>
+								{% for message in messages %}
+									<p {% if message.tags %} class="{{ message.tags }}" id="{{ message.tags }}" {% endif %}>{{ message }}</p>
+								{% endfor %}
+								<button type="button" class="btn-close text-lg py-3 opacity-1" data-bs-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						{% endif %}
+
+						{% csrf_token %}
+						<div>
+							{{ form.name|attr:"class:form-control"|attr:"name:name"|attr:"placeholder:Enter your Full Name" }}
+						</div>
+						<div>
+							{{ form.email|attr:"class:form-control"|attr:"name:email"|attr:"placeholder:Enter your Email" }}
+						</div>
+						<div>
+							{{ form.subject|attr:"class:form-control"|attr:"name:subject"|attr:"placeholder:Enter your Title" }}
+						</div>
+						<div>
+							{{ form.message|attr:"class:form-control text-input"|attr:"rows:5"|attr:"placeholder:Enter your Message" }}
+						</div>
+
+						<button id="button-send" class="button" style="width: 100%;">Send E-Mail</button>
+						<div id="success">Your message has been successfully!</div>
+						<div id="error">Unable to send your message, please try later.</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+
+		<footer>
+			<div class="row">
+				<div class="large-6 columns">
+					<ul class="inline-list">
+						<li class="copyright">2023 &copy; ChrisViola Logistic Limited</a></li>
+					</ul>
+				</div>
+				<div class="large-6 columns">
+					<ul class="inline-list social-media right">
+						<li><a href="#" class="icon icon-facebook"></a></li>
+						<li><a href="#" class="icon icon-twitter"></a></li>
+						<li><a href="#" class="icon icon-googleplus"></a></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+	</body>
+</html>
